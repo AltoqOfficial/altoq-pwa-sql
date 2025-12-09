@@ -90,6 +90,33 @@ Almacena información de suscriptores con metadata completa para análisis.
 
 Para ver el esquema completo, consulta [migrations/001_initial_subscribers_table.sql](migrations/001_initial_subscribers_table.sql)
 
+## Git Flow
+
+Este proyecto utiliza **Git Flow** para gestión de versiones:
+
+- **`main`** - Código en producción (solo releases)
+- **`develop`** - Desarrollo activo (rama principal de trabajo)
+- **`feature/*`** - Nuevas funcionalidades
+- **`hotfix/*`** - Correcciones urgentes
+- **`release/*`** - Preparación de versiones
+
+**Flujo de trabajo:**
+
+```bash
+# Crear nueva feature
+git checkout develop
+git checkout -b feature/nombre-feature
+
+# Hacer commits...
+git commit -m "Descripción del cambio"
+
+# Integrar a develop
+git checkout develop
+git merge feature/nombre-feature --no-ff
+```
+
+Para más detalles, consulta [docs/GIT_WORKFLOW.md](docs/GIT_WORKFLOW.md)
+
 ## Convenciones
 
 ### Nomenclatura
