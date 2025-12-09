@@ -1,0 +1,81 @@
+-- ============================================================================
+-- RLS Policy: subscribers - DISABLED
+-- Description: Row Level Security deshabilitado intencionalmente para
+--              permitir inserts públicos desde la aplicación web
+-- Table: subscribers
+-- Author: Tadeo Portillo
+-- Date: 2025-12-08
+-- ============================================================================
+
+-- ============================================================================
+-- JUSTIFICACIÓN: ¿Por qué RLS está DESHABILITADO?
+-- ============================================================================
+--
+-- 1. VALIDACIÓN EN API:
+--    - Todos los datos son validados y sanitizados en el API endpoint
+--    - El frontend envía los datos a través de una API controlada
+--
+-- 2. DATOS NO SENSIBLES:
+--    - Solo almacena emails públicos y metadata técnica
+--    - No hay información confidencial o personal sensible
+--
+-- 3. SEGURIDAD POR API KEYS:
+--    - Las API keys de Supabase están protegidas en variables de entorno
+--    - No se exponen en el código del cliente
+--
+-- 4. CASO DE USO:
+--    - Formulario público de suscripción que necesita permitir inserts
+--    - Sin necesidad de autenticación de usuarios
+--
+-- ============================================================================
+
+-- ============================================================================
+-- POLÍTICA APLICADA
+-- ============================================================================
+
+ALTER TABLE subscribers DISABLE ROW LEVEL SECURITY;
+
+-- ============================================================================
+-- CONSIDERACIONES DE SEGURIDAD
+-- ============================================================================
+--
+-- IMPORTANTE: Si en el futuro necesitas restringir el acceso:
+--
+-- 1. Habilitar RLS:
+--    ALTER TABLE subscribers ENABLE ROW LEVEL SECURITY;
+--
+-- 2. Crear política para INSERT público:
+--    CREATE POLICY "allow_public_insert"
+--      ON subscribers
+--      FOR INSERT
+--      TO anon
+--      WITH CHECK (true);
+--
+-- 3. Crear política para SELECT solo admin:
+--    CREATE POLICY "allow_admin_select"
+--      ON subscribers
+--      FOR SELECT
+--      TO authenticated
+--      USING (auth.role() = 'admin');
+--
+-- 4. Restringir UPDATE/DELETE:
+--    CREATE POLICY "restrict_updates"
+--      ON subscribers
+--      FOR UPDATE
+--      TO authenticated
+--      USING (auth.role() = 'admin')
+--      WITH CHECK (auth.role() = 'admin');
+--
+-- ============================================================================
+
+-- ============================================================================
+-- VERIFICACIÓN
+-- ============================================================================
+-- Para verificar el estado de RLS:
+--
+-- SELECT tablename, rowsecurity
+-- FROM pg_tables
+-- WHERE tablename = 'subscribers';
+--
+-- Resultado esperado: rowsecurity = false
+-- ============================================================================

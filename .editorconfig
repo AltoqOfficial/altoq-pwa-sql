@@ -1,0 +1,38 @@
+# EditorConfig - Configuración de estilo de código
+# https://editorconfig.org
+
+# Configuración raíz
+root = true
+
+# Configuración para todos los archivos
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Archivos SQL
+[*.sql]
+indent_style = space
+indent_size = 2
+
+# Archivos Markdown
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+
+# Archivos de configuración
+[*.{json,yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Scripts de shell
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+
+# Archivos de documentación
+[*.txt]
+indent_style = space
+indent_size = 2

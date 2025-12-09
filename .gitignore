@@ -1,0 +1,63 @@
+# Archivos de entorno y credenciales
+.env
+.env.local
+.env.production
+.env.*.local
+*.env
+
+# Credenciales y secrets
+secrets/
+credentials/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Archivos de configuración con datos sensibles
+supabase/config.toml
+.supabase/
+
+# Dumps de base de datos
+*.dump
+*.sql.gz
+*.backup
+backups/
+dumps/
+
+# Datos de producción
+production_data/
+prod_*.sql
+
+# Archivos temporales
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo
+*~
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vs/
+
+# Node modules (si usas herramientas de migración)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Outputs de testing
+coverage/
+.nyc_output/
+
+# Archivos de desarrollo local
+local_test.sql
+scratch.sql
+test_queries.sql
